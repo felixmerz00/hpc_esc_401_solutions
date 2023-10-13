@@ -1,0 +1,4 @@
+Exercise 1
+
+The program from cpi.c had a computation time of 2.457 seconds. The program from cpi_mpi.c had a computation time of 2.32 seconds and a total runtime of 2.967 seconds. I am not sure why the computation time is different between the two programs. I don't think the difference is significant. 
+
