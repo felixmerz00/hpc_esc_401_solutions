@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
+#include "header.h"
 
 typedef struct {
     float x;
@@ -14,8 +15,9 @@ int main(int argc, char *argv[]) {
     const int N = 1024*1024*256;
     coord *data;
     int i;
-    double sum;
+    double sum, tStart, tElapsed;
     
+    tStart = getTime();
     data = malloc(N * sizeof(coord));
     assert(data);
     
@@ -28,5 +30,7 @@ int main(int argc, char *argv[]) {
         sum += sqrt(data[i].r2);
     }
     printf("sum=%f\n", sum);
+    tElapsed = getTime() - tStart;
+    printf("The program ran for %.4g seconds\n", tElapsed);
     return 0;
 }

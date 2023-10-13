@@ -1,0 +1,30 @@
+Exercise 2
+
+What results does your code produce?
+Run with flag -O0
+sum=10022429073.341873
+The program ran for 6.246 seconds
+
+Run with flag -O1
+sum=10022429073.341873
+The program ran for 1.38 seconds
+
+Run with flag -O2
+sum=10022429073.341873
+The program ran for 1.349 seconds
+
+Run with flag -O3
+sum=10022429073.341873
+The program ran for 1.366 seconds
+
+
+Do you know other ways to get timings?
+Maybe I could convert my program to a slurm job. Then the email from cscs would state the runtime.
+
+
+How big is the difference in execution time with the different flags?
+There is almost no difference between using the flags O1, O2 and O3. However, with  the flag O0 the runtime increases by almost five seconds.
+
+
+How can you make it even faster?
+The flags -ffast-math and -mavx2 might speed up the program further.
