@@ -9,4 +9,4 @@
 - M is a pointer to a pointer. *M is a pointer to an array of integers. **M is the first element in the integer array; i.e. 0.
 - M[1][3] points to the fourth element in the second integer array. i.e., 8
 - *(M[0]+1) is the second element in the first integer array. i.e., 1
-- *(*(M+1)+3) is the fourth element in the second integer array. i.e., 8
+- \*(\*(M+1)+3) is the fourth element in the second integer array. i.e., 8
