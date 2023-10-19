@@ -1,6 +1,6 @@
 ## Exercise 1
 I can't compile my .cpp file using cc or CC. I can use
-```g++ vector-addition.cpp -o vector-addition```
+```g++ vector-addition.cpp -o vector-addition``` to compile my code.
 
 ## Exercise 2
 
