@@ -1,3 +1,7 @@
+## Exercise 1
+I can't compile my .cpp file using cc or CC. I can use
+```g++ vector-addition.cpp -o vector-addition```
+
 ## Exercise 2
 
 - It stores the number 42 in the place before the array. This should be avoided.
