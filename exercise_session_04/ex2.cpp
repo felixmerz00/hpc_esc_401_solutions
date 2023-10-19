@@ -1,7 +1,28 @@
 #include <stdio.h>
 
-void partTwo(){
+void swapArray(int **M, int sizeOuter, int sizeInner){
+  int **M2 = new int* [2];
+  M2[0] = new int[5];
+  M2[1] = new int[5];
 
+  for(int i = 0; i < sizeOuter; i++){
+    for(int j = 0; j < sizeInner; j++){
+      M2[i][j] = M[sizeOuter - 1 - i][sizeInner - 1 - j];
+    }
+  }
+
+  for(int i = 0; i < sizeOuter; i++){
+    for(int j = 0; j < sizeInner; j++){
+      printf("%d ", M2[i][j]);
+    }
+    printf("\n");
+  }
+
+  // somehow i cannot free the memory
+  // error: use of undeclared identifier 'free'
+  // free(M2[0]);
+  
+  return;
 }
 
 void partOne(){
@@ -36,11 +57,19 @@ void partOne(){
   printf("M[1][3]: %d\n", M[1][3]);
   printf("*(M[0]+1): %d\n", *(M[0]+1));
   printf("*(*(M+1)+3): %d\n", *(*(M+1)+3));
-
+  return;
 }
 
 int main(){
   partOne();
+
+  // Part two
+  int ** M = new int *[2];
+  M[0] = new int[5];
+  M[0][0] = 0; M[0][1] = 1; M[0][2] = 2; M[0][3] = 3; M[0][4] = 4; 
+  M[1] = new int[5];
+  M[1][0] = 5; M[1][1] = 6; M[1][2] = 7; M[1][3] = 8; M[1][4] = 9;
+  swapArray(M, 2, 5);
 
   return 0;
 }
