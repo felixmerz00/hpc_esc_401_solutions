@@ -23,3 +23,23 @@ init_f() initializes the matrix which represents the function f. The user can ch
 jacobi_step() calculates the values of the new iteration in our approximation of the Poisson problem. It updates all inner cells of our matrix based on formula (4). To calculate the new values I use the values from the last iteration and the values from the matrix f.
 
 norm_diff() is needed for one of our stopping criterias. Our approximation should stop iterating when the norm of a certain difference is below a given threshold. norm_diff() calculates the norm of that difference.
+
+I can't compile my program. It says there is no rule for 'init.cpp'. But the file is clearly in my directory.
+
+[eiger][fmerz@eiger-ln001 poisson_solver]$ make
+make: stat: init.cpp: Input/output error
+make: *** No rule to make target 'init.cpp', needed by 'init.o'.  Stop.
+[eiger][fmerz@eiger-ln001 poisson_solver]$ ls
+init.cpp  io.cpp  jacobi.cpp  main.cpp	output
+init.h	  io.h	  jacobi.h    Makefile	params.txt
+[eiger][fmerz@eiger-ln001 poisson_solver]$ cat Makefile
+CFLAGS=-O3 -ffast-math -mavx2
+CC=CC
+
+all: init.o io.o jacobi.o main
+init.o: init.cpp init.h
+io.o: io.cpp io.h
+jacobi.o: jacobi.cpp jacobi.h
+main: init.o io.o jacobi.o
+clean: 
+	rm -f main init.o io.o jacobi.o
