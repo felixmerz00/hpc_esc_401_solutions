@@ -99,8 +99,8 @@ void init_f(params p, double **f){
     // Calculate border and non-border grid fields based on equation (2) and (3)
     for (int i=0; i<p.ny; i++){
         for (int j=0; j<p.nx; j++){
-            y = 1/(i-1);
-            x = 1/(j-1);
+            y = i/(p.nx-1);
+            x = j/(p.ny-1);
             if(i == 0 || i == (p.ny-1) || j == 0 || j == p.nx-1){
                 f[i][j] = boundary(x, y, p.rhs_function);
             }else{

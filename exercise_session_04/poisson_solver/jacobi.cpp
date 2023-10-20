@@ -11,7 +11,6 @@
  * @return     Returns \sqrt{\sum(mat1_{ij} - mat2_{ij})^2/(nx*ny)}
  */
 double norm_diff(params p, double** mat1, double** mat2){
-    printf("Function norm_diff (jacobi.cpp l.12): not implemented.\n");
     double sum_ij = 0;
     for (int i=0; i<p.nx; i++){
         for (int j=0; j<p.ny; j++){
@@ -33,6 +32,7 @@ double norm_diff(params p, double** mat1, double** mat2){
 void jacobi_step(params p, double** u_new, double** u_old, double** f){
     double dx = 1.0/(double(p.nx - 1));
     double dy = 1.0/(double(p.ny - 1));
+    double delta = 1/(p.nx-1);
 
     for (int i=0; i<p.nx; i++){
         for (int j=0; j<p.ny; j++){
@@ -43,7 +43,11 @@ void jacobi_step(params p, double** u_new, double** u_old, double** f){
     // Make the next Jacobi step based on equation (4)
     for (int i=1; i<p.ny-1; i++){
         for (int j=1; j<p.nx-1; j++){
-            u_new[i][j] = 0.25 * (u_old[i-1][j] + u_old[i+1][j] + u_old[i][j-1] + u_old[i][j+1] - pow((1/p.nx),2) * f[i][j]);
+            u_new[i][j] = 0.25 * (
+                u_old[i-1][j] + u_old[i+1][j] 
+                + u_old[i][j-1] + u_old[i][j+1] 
+                - pow(delta,2) * f[i][j]
+            );
         }
     }
 }
