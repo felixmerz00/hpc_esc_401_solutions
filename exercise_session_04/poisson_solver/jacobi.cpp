@@ -12,7 +12,13 @@
  */
 double norm_diff(params p, double** mat1, double** mat2){
     printf("Function norm_diff (jacobi.cpp l.12): not implemented.\n");
-    return 0.; // replace 0 with the norm
+    double sum_ij = 0;
+    for (int i=0; i<p.nx; i++){
+        for (int j=0; j<p.ny; j++){
+            sum_ij += pow(mat1[i][j] - mat2[i][j], 2);
+        }
+    }
+    return sqrt(sum_ij/pow(p.nx,2)); // return the norm
 }
 
 /**
@@ -33,5 +39,11 @@ void jacobi_step(params p, double** u_new, double** u_old, double** f){
             u_old[i][j] = u_new[i][j];
         }
     }
-    printf("Function jacobi_step (jacobi.cpp l.26): not implemented.\n");
+
+    // Make the next Jacobi step based on equation (4)
+    for (int i=1; i<p.ny-1; i++){
+        for (int j=1; j<p.nx-1; j++){
+            u_new[i][j] = 0.25 * (u_old[i-1][j] + u_old[i+1][j] + u_old[i][j-1] + u_old[i][j+1] - pow((1/p.nx),2) * f[i][j]);
+        }
+    }
 }
