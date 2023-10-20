@@ -14,3 +14,12 @@ I can't compile my .cpp file using cc or CC. I can use
 - M[1][3] points to the fourth element in the second integer array. i.e., 8
 - \*(M[0]+1) is the second element in the first integer array. i.e., 1
 - \*(\*(M+1)+3) is the fourth element in the second integer array. i.e., 8
+
+## Exercise 3
+
+What are these routines supposed to do?
+init_f() initializes the matrix which represents the function f. The user can choose one out of two functions. init_f generates the matrix f based on the users selection. Both functions differ between border cells of the matrix and inner cells. The actual values of the cells are calculated in the given functions boundary() and source_term().
+
+jacobi_step() calculates the values of the new iteration in our approximation of the Poisson problem. It updates all inner cells of our matrix based on formula (4). To calculate the new values I use the values from the last iteration and the values from the matrix f.
+
+norm_diff() is needed for one of our stopping criterias. Our approximation should stop iterating when the norm of a certain difference is below a given threshold. norm_diff() calculates the norm of that difference.
