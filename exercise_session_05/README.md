@@ -20,6 +20,10 @@ drwxr-----+ 75 jbucko uzh27 8192 Okt 26 11:55 /users/jbucko
 I can't access the files inside the directory either, like hpc exam solution.txt. I cannot see if this file exists. The content of the direcory are inaccassible to me.
 
 
+With the command `chmod 700 testdir` I revoke permessions for everybody but me.
+I created a file and gave the permissions 000. The file was not lost. I could run `chmod u+rw no-permissions.txt`. Then I could edit the file again.
+
+
 ## Exercise 3
 1) end with 00
 grep .*00$ binary.txt
