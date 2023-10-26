@@ -1,5 +1,5 @@
 ## Exercise 2
-$HOME
+$HOME<br>
 drwx------ 14 fmerz uzh8 8192 Okt 26 12:21
 For the $HOME directory I have all the permissons and the group and others have no permissions. Also I have no permission for other student's $HOME directory.
 ```
@@ -7,14 +7,16 @@ cd /users/jblum
 -bash: cd: /users/jblum: Permission denied
 ```
 
-$SCRATCH
-drwxr-x---+ 2 fmerz uzh8 4096 Sep 26 17:01 /capstor/scratch/cscs/fmerz
+$SCRATCH<br>
+`drwxr-x---+ 2 fmerz uzh8 4096 Sep 26 17:01 /capstor/scratch/cscs/fmerz``
 For the $scratch directory, again I have all the permissions. But also my group can read, access and examine what files are inside my $SCRATCH directory. Likewise I can other student's $SCRATCH directory. E.g., the command to access Jonas Blums $SCRATCH directory `cd /capstor/scratch/cscs/jblum` works.
 
 When I create a file in my $HOME directory the default permissions allow me to read and write. Also my group and everybody else can technically read the file (if they had access to the directory). For files in my $SCRATCH directory the default permissions allow me to read and write and my group can read too.
 
 I do not have permissions to access change my directory to /users/jbucko. jbucko can read, write and access content of this directory. Also members of his group can read the directory. But he is in groupt uzh27. I am in group uzh8. So I have no permissions whatsoever for this directory.
-```drwxr-----+ 75 jbucko uzh27 8192 Okt 26 11:55 /users/jbucko```
+```
+drwxr-----+ 75 jbucko uzh27 8192 Okt 26 11:55 /users/jbucko
+```
 I can't access the files inside the directory either, like hpc exam solution.txt. I cannot see if this file exists. The content of the direcory are inaccassible to me.
 
 
