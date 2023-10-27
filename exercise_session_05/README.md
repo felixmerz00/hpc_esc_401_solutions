@@ -39,7 +39,7 @@ grep --color 111 binary.txt
 
 ## Exerise 4
 The check if the given number is prime is done in no time.
-
+```
 felixmerz@MacBook-Felix exercise_session_05 % time ./is-prime.sh 4230283
 4230283 is prime
 ./is-prime.sh 4230283  0.00s user 0.01s system 101% cpu 0.013 total
@@ -49,3 +49,4 @@ felixmerz@MacBook-Felix exercise_session_05 % time ./is-prime.sh 4572862171001
 felixmerz@MacBook-Felix exercise_session_05 % time ./is-prime.sh 4572862171002
 4572862171002 is composite
 ./is-prime.sh 4572862171002  0.00s user 0.01s system 106% cpu 0.013 total
+```
