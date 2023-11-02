@@ -47,9 +47,10 @@ int read_file(char *path,int *buff,int *size){
 
 
 int main(int argc, char *argv[]){
-    double start;
-    double end;
-    start = omp_get_wtime();
+    //double start;
+    //double end;
+    //start = omp_get_wtime();
+    //Use time ./parallel-1 instead to time
 
 	int num_size, true_n0=646016;
 	int numbers[2000000];
@@ -60,12 +61,10 @@ int main(int argc, char *argv[]){
     // first loop
     int maxval = 0;
     #pragma omp parallel for reduction(max : maxval)
-    {
       for (int i=0;i<num_size;i++) {
-        printf("num cores: %d\n", omp_get_thread_num())
+        // printf("num cores: %d\n", omp_get_thread_num());
         if (numbers[i] > maxval) maxval = numbers[i];
       }
-    }
     printf("max number in file: %d\n",maxval);	
 
     // second loop
@@ -75,8 +74,8 @@ int main(int argc, char *argv[]){
     printf("number of 0s in file: %d\n",num_n0);  
     printf("true number of 0s in file: %d\n",true_n0); 
 
-    end = omp_get_wtime();
-    printf("Work took %f seconds\n", end - start);
+    //end = omp_get_wtime();
+    //printf("Work took %f seconds\n", end - start);
 
     return 0;
 }
