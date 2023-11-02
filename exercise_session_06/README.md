@@ -24,3 +24,21 @@ I did not run into a race condition. I think using `#pragma omp critical` in thi
 `#pragma omp atomic` probably can't be applied here either, because I need to execute two operations in isolation: the comparison inside the if clause and the assignment of the new maxval.
 
 I already used `#pragma omp reduction` from the beginning. I think this is the best option for this specific case.
+
+I think my loops are parallelized but I don't see a performance gain.
+```
+[eiger][fmerz@eiger-ln006 race_conditions]$ ./serial
+Size of integer array/file: 1000000
+max number in file: 38747
+number of 0s in file: 646016
+true number of 0s in file: 646016
+Work took 0.230022 seconds
+[eiger][fmerz@eiger-ln006 race_conditions]$ ./parallel-1
+Size of integer array/file: 1000000
+max number in file: 38747
+number of 0s in file: 646016
+true number of 0s in file: 646016
+Work took 0.257383 seconds
+```
+
+I also used `printf("num cores: %d\n", omp_get_thread_num())` to check if I am actually using multiple threads. I am.
