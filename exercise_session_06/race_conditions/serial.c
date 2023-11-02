@@ -45,6 +45,9 @@ int read_file(char *path,int *buff,int *size){
 
 
 int main(int argc, char *argv[]){
+    double start;
+    double end;
+    start = omp_get_wtime();
 
 	int num_size, true_n0=646016;
 	int numbers[2000000];
@@ -63,7 +66,10 @@ int main(int argc, char *argv[]){
     #pragma omp parallel for reduction(+ : num_n0)
     for (int i=0;i<num_size;i++) if (numbers[i] == 0) num_n0++;
     printf("number of 0s in file: %d\n",num_n0);  
-    printf("true number of 0s in file: %d\n",true_n0);  
+    printf("true number of 0s in file: %d\n",true_n0); 
+
+    end = omp_get_wtime();
+    printf("Work took %f seconds\n", end - start);
 
     return 0;
 }
