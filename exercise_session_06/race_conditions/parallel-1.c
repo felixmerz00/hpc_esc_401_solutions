@@ -60,7 +60,12 @@ int main(int argc, char *argv[]){
     // first loop
     int maxval = 0;
     #pragma omp parallel for reduction(max : maxval)
-    for (int i=0;i<num_size;i++) if (numbers[i] > maxval) maxval = numbers[i];
+    {
+      for (int i=0;i<num_size;i++) {
+        printf("num cores: %d\n", omp_get_thread_num())
+        if (numbers[i] > maxval) maxval = numbers[i];
+      }
+    }
     printf("max number in file: %d\n",maxval);	
 
     // second loop
