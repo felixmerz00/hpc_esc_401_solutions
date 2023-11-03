@@ -28,9 +28,11 @@ int main(int argc, char** argv) {
         if (my_rank % 1 == 0)
         {
             MPI_Ssend(&send_rank, 1, MPI_INTEGER, right_rank, 100, MPI_COMM_WORLD);
+            MPI_Recv(&recv_rank, 1, MPI_INTEGER, left_rank, 100, MPI_COMM_WORLD, & status);
         }else
         {
             MPI_Recv(&recv_rank, 1, MPI_INTEGER, left_rank, 100, MPI_COMM_WORLD, & status);
+            MPI_Ssend(&send_rank, 1, MPI_INTEGER, right_rank, 100, MPI_COMM_WORLD);
         }
         
         // update the send buffer
