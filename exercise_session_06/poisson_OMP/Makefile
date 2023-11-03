@@ -1,5 +1,7 @@
 CPPFLAGS=-O3 -ffast-math -mavx2
 CC=CC
+CXXFLAGS += -fopenmp
+LDFLAGS += -fopenmp
 
 all: init.o io.o jacobi.o main
 init.o: init.cpp init.h
