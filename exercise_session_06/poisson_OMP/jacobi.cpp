@@ -35,7 +35,8 @@ double norm_diff(params p, double** mat1, double** mat2){
 void jacobi_step(params p, double** u_new, double** u_old, double** f){
     double dx = 1.0/((double)p.nx - 1);
     double dy = 1.0/((double)p.ny - 1);
-	
+
+    #pragma omp parallel for    
     for (int i=0; i<p.nx; i++){
         for (int j=0; j<p.ny; j++)
             u_old[i][j] = u_new[i][j];
