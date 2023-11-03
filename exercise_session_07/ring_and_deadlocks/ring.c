@@ -3,6 +3,9 @@
 
 int main(int argc, char** argv) {
     MPI_Status status;
+    MPI_Request sendRequest;
+    MPI_Request receiveRequest;
+    MPI_Request waitRequest;
     // Initialize the MPI environment
     MPI_Init(NULL, NULL);
 
@@ -25,15 +28,19 @@ int main(int argc, char** argv) {
     for (int i = 0; i < size; i++)
     {
         // send to right, receive from left
-        if (my_rank % 2 == 0)
-        {
-            MPI_Ssend(&send_rank, 1, MPI_INTEGER, right_rank, 100, MPI_COMM_WORLD);
-            MPI_Recv(&recv_rank, 1, MPI_INTEGER, left_rank, 100, MPI_COMM_WORLD, & status);
-        }else
-        {
-            MPI_Recv(&recv_rank, 1, MPI_INTEGER, left_rank, 100, MPI_COMM_WORLD, & status);
-            MPI_Ssend(&send_rank, 1, MPI_INTEGER, right_rank, 100, MPI_COMM_WORLD);
-        }
+        // if (my_rank % 2 == 0)
+        // {
+        //     MPI_Ssend(&send_rank, 1, MPI_INTEGER, right_rank, 100, MPI_COMM_WORLD);
+        //     MPI_Recv(&recv_rank, 1, MPI_INTEGER, left_rank, 100, MPI_COMM_WORLD, & status);
+        // }else
+        // {
+        //     MPI_Recv(&recv_rank, 1, MPI_INTEGER, left_rank, 100, MPI_COMM_WORLD, & status);
+        //     MPI_Ssend(&send_rank, 1, MPI_INTEGER, right_rank, 100, MPI_COMM_WORLD);
+        // }
+
+        MPI_Isend(&send_rank, 1, MPI_INTEGER, right_rank, 100, MPI_COMM_WORLD, &sendRequest);
+        MPI_Irecv(&recv_rank, 1, MPI_INTEGER, left_rank, 100, MPI_COMM_WORLD, &receiveRequest);
+        MPI_Wait(&waitRequest, &status);
         
         // update the send buffer
         send_rank = recv_rank;
