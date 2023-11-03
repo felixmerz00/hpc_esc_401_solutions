@@ -18,8 +18,8 @@ int main(int argc, char** argv) {
 
     // Compute the ranks of left/right neighbours 
     int left_rank, right_rank;
-    left_rank = (my_rank + size-1)%size
-    right_rank = (my_rank + 1)
+    left_rank = (my_rank + size-1)%size;
+    right_rank = (my_rank + 1)%size;
     
     // Loop over the number of processes
     for (int i = 0; i < size; i++)
@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
         }
         
         // update the send buffer
-        send_rank = recv_rank
+        send_rank = recv_rank;
         // update the local sum
         my_sum += recv_rank;
     }
