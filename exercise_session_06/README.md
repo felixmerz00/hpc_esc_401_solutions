@@ -42,3 +42,6 @@ Work took 0.257383 seconds
 ```
 
 I also used `printf("num cores: %d\n", omp_get_thread_num())` to check if I am actually using multiple threads. I am.
+
+## Exercise 2
+My serial code did not finish. After 60 seconds it was at step 5000. My parallelized program made 140'000 steps in the same time. It finished after 129 seconds and 296'000 steps. This consitutes a speedup of x28.
