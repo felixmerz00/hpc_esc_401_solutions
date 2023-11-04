@@ -28,8 +28,8 @@ int main(int argc, char** argv) {
 
   for (int i = 0; i < size; i++)
   {
-    MPI_Isend(&send_rank, 1, MPI_INTEGER, rneigh_rank, 100, MPI_COMM_WORLD, &sendRequest);
-    MPI_Irecv(&recv_rank, 1, MPI_INTEGER, lneigh_rank, 100, MPI_COMM_WORLD, &receiveRequest);
+    MPI_Isend(&send_rank, 1, MPI_INTEGER, rneigh_rank, 100, comm_cart, &sendRequest);
+    MPI_Irecv(&recv_rank, 1, MPI_INTEGER, lneigh_rank, 100, comm_cart, &receiveRequest);
     MPI_Wait(&sendRequest, &status);
     MPI_Wait(&receiveRequest, &status);
 
