@@ -1,4 +1,4 @@
-## Exercise 1
+# Exercise 1
 The program runs forever because a deadlock occurs. Every rank wants to send information and waits until the next rank received the information. But no rank is receiving. Therefore we enter a deadlock. With the proposed solution the even ranks send information and get the confirmation from the odd ranks that they received the information. Then the program can proceed and the odd ranks send information and the even ranks receive it. This solution is not optimal. A rank that is receiving first, must wait until it got the message and only then it can start sending data.
 
     // send to right, receive from left
@@ -19,7 +19,7 @@ The combinations Irecv-Isend-Waitall and Isend-Irecv-Waitall are better solution
     MPI_Wait(&sendRequest, &status);
     MPI_Wait(&receiveRequest, &status);
 
-# Bonus
+## Bonus
 It worked. The job (slurm-2423586.out) produced the following output.
 
     I am processor 0. My left neighbour is 3. My right neighbour is 1.
@@ -30,3 +30,5 @@ It worked. The job (slurm-2423586.out) produced the following output.
     I am processor 2 out of 4, and the sum is 6
     I am processor 1. My left neighbour is 0. My right neighbour is 2.
     I am processor 1 out of 4, and the sum is 6
+
+# Exercise 2
