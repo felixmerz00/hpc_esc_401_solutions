@@ -3,6 +3,9 @@
 
 int main(int argc, char** argv) {
   MPI_Comm comm_cart;
+  MPI_Status status;
+  MPI_Request sendRequest;
+  MPI_Request receiveRequest;
   // Initialize the MPI environment
   MPI_Init(NULL, NULL);
 
@@ -13,7 +16,7 @@ int main(int argc, char** argv) {
 
   int send_rank = my_rank;  // Send    buffer
   int recv_rank = 0;        // Receive buffer
-  int sum = my_rank;
+  int my_sum = my_rank;
 
   int dims[1] = {size};
   int periods[1] = {1};
@@ -31,7 +34,7 @@ int main(int argc, char** argv) {
     MPI_Wait(&receiveRequest, &status);
 
     send_rank = recv_rank;  // update the send buffer
-    sum += recv_rank;   // update the local sum
+    my_sum += recv_rank;   // update the local sum
   }
   
   printf("I am processor %d. My left neighbour is %d. My right neighbour is %d.\n", my_rank, lneigh_rank, rneigh_rank);
