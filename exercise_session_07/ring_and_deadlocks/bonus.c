@@ -11,6 +11,10 @@ int main(int argc, char** argv) {
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
 
+  int send_rank = my_rank;  // Send    buffer
+  int recv_rank = 0;        // Receive buffer
+  int sum = my_rank;
+
   int dims[1] = {size};
   int periods[1] = {1};
   // int MPI_Cart_create(MPI_Comm comm_old, int ndims, int *dims, int *periods, int reorder, MPI_Comm *comm_cart);
@@ -19,8 +23,19 @@ int main(int argc, char** argv) {
   // int MPI_Cart_shift(MPI_Comm comm, int direction, int displ, int *source, int *dest);
   MPI_Cart_shift(comm_cart, 0, 1, &lneigh_rank, &rneigh_rank);
 
+  for (int i = 0; i < size; i++)
+  {
+    MPI_Isend(&send_rank, 1, MPI_INTEGER, rneigh_rank, 100, MPI_COMM_WORLD, &sendRequest);
+    MPI_Irecv(&recv_rank, 1, MPI_INTEGER, lneigh_rank, 100, MPI_COMM_WORLD, &receiveRequest);
+    MPI_Wait(&sendRequest, &status);
+    MPI_Wait(&receiveRequest, &status);
 
+    send_rank = recv_rank;  // update the send buffer
+    sum += recv_rank;   // update the local sum
+  }
+  
   printf("I am processor %d. My left neighbour is %d. My right neighbour is %d.\n", my_rank, lneigh_rank, rneigh_rank);
+  printf("I am processor %d out of %d, and the sum is %d\n", my_rank, size, my_sum);
 
   // Finalize the MPI environment.
   MPI_Finalize();
