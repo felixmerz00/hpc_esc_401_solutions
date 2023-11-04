@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 
   int send_rank = my_rank;  // Send    buffer
   int recv_rank = 0;        // Receive buffer
-  int my_sum = my_rank;
+  int my_sum = 0;
 
   int dims[1] = {size};
   int periods[1] = {1};
