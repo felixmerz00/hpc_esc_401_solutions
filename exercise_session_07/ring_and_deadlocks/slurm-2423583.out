@@ -1,0 +1,21 @@
+I am processor 2. My left neighbour is 1. My right neighbour is 3.
+I am processor 1. My left neighbour is 0. My right neighbour is 2.
+I am processor 0. My left neighbour is 3. My right neighbour is 1.
+I am processor 3. My left neighbour is 2. My right neighbour is 0.
+
+
+Batch Job Summary Report (version 21.01.1) for Job "job_name" (2423583) on eiger
+
+Job information (1/2)
+-----------------------------------------------------------------------------------------------------
+             Submit            Eligible               Start                 End    Elapsed Time limit
+------------------- ------------------- ------------------- ------------------- ---------- ----------
+2023-11-04T12:18:19 2023-11-04T12:18:19 2023-11-04T12:18:20 2023-11-04T12:18:21   00:00:01   00:05:00
+-----------------------------------------------------------------------------------------------------
+
+Job information (2/2)
+-------------------------------------------------------------
+    Username      Account    Partition   NNodes        Energy
+------------ ------------ ------------ -------- -------------
+       fmerz         uzh8       normal        1      0.220 kJ
+
