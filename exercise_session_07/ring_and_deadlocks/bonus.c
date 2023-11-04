@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
   MPI_Cart_create(MPI_COMM_WORLD, 1, dims, periods, 1, &comm_cart);
 
   // int MPI_Cart_shift(MPI_Comm comm, int direction, int displ, int *source, int *dest);
-  int MPI_Cart_shift(comm_cart, 0, 1, &source_rank, &rneigh_rank);
+  int MPI_Cart_shift(comm_cart, 0, 1, &lneigh_rank, &rneigh_rank);
 
 
   printf("I am processor %d. My left neighbour is %d. My right neighbour is %d.\n", my_rank, lneigh_rank, rneigh_rank);
