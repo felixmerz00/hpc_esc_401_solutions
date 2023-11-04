@@ -13,6 +13,7 @@ The program runs forever because a deadlock occurs. Every rank wants to send inf
   }
 
 The combinations Irecv-Isend-Waitall and Isend-Irecv-Waitall are better solutions than synchronous communication because on each rank the requests can be executed simultaniously and independent from each other.
+
   MPI_Isend(&send_rank, 1, MPI_INTEGER, right_rank, 100, MPI_COMM_WORLD, &sendRequest);
   MPI_Irecv(&recv_rank, 1, MPI_INTEGER, left_rank, 100, MPI_COMM_WORLD, &receiveRequest);
   MPI_Wait(&sendRequest, &status);
