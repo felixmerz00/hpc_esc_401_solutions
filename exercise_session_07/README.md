@@ -20,11 +20,11 @@ The combinations Irecv-Isend-Waitall and Isend-Irecv-Waitall are better solution
 
 # Bonus
 It worked. The job (slurm-2423586.out) produced the following output.
-  I am processor 0. My left neighbour is 3. My right neighbour is 1.
-  I am processor 0 out of 4, and the sum is 6
-  I am processor 3. My left neighbour is 2. My right neighbour is 0.
-  I am processor 3 out of 4, and the sum is 6
-  I am processor 2. My left neighbour is 1. My right neighbour is 3.
-  I am processor 2 out of 4, and the sum is 6
-  I am processor 1. My left neighbour is 0. My right neighbour is 2.
-  I am processor 1 out of 4, and the sum is 6
+    I am processor 0. My left neighbour is 3. My right neighbour is 1.
+    I am processor 0 out of 4, and the sum is 6
+    I am processor 3. My left neighbour is 2. My right neighbour is 0.
+    I am processor 3 out of 4, and the sum is 6
+    I am processor 2. My left neighbour is 1. My right neighbour is 3.
+    I am processor 2 out of 4, and the sum is 6
+    I am processor 1. My left neighbour is 0. My right neighbour is 2.
+    I am processor 1 out of 4, and the sum is 6
