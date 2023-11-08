@@ -22,8 +22,10 @@ int main(int argc, char** argv) {
   int periods[1] = {1};
   // int MPI_Cart_create(MPI_Comm comm_old, int ndims, int *dims, int *periods, int reorder, MPI_Comm *comm_cart);
   MPI_Cart_create(MPI_COMM_WORLD, 1, dims, periods, 1, &comm_cart);
+  MPI_Comm_rank(comm_cart, &my_rank);
 
-  // int MPI_Cart_shift(MPI_Comm comm, int direction, int displ, int *source, int *dest);
+  // int MPI_Cart_shift(MPI_Comm comm, int direction, int displ (1 = closest neighbour), int *source, int *dest);
+  // shift calculates the neighbour ranks.
   MPI_Cart_shift(comm_cart, 0, 1, &lneigh_rank, &rneigh_rank);
 
   for (int i = 0; i < size; i++)
