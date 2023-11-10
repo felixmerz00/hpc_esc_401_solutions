@@ -57,8 +57,8 @@ int halo_comm(params p, int my_rank, int size, double** u, double* fromLeft, dou
 	MPI_Type_commit(&column_type);
 
 	// ...some code goes here and then do not forget to free the column_type
-	int array_size = (my_rank == 0 || my_rank = size-1) ? 2 : 4;
-	MPI_Request[array_size] requests;
+	int array_size = (my_rank == 0 || my_rank == size-1) ? 2 : 4;
+	MPI_Request requests[array_size];
 
 	if (my_rank != 0)	// Interaction with left neighbour
 	{
@@ -93,4 +93,3 @@ int ALLREDUCE(double* loc_diff, double* loc_sumdiff){
 	return 0;
 
 	}
-
