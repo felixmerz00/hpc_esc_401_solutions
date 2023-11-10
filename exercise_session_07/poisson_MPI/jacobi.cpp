@@ -41,6 +41,10 @@ void jacobi_step(params p, double** u_new, double** u_old, double** f, int my_ra
     double* fromLeft = new double[p.ymax - p.ymin]; 
     double* fromRight = new double[p.ymax - p.ymin];
 
+    // u is a local grid containing only the domain of this rank.
+    // this thing below is unnecessary complicated. I start at i = xmin and increase it until i reach xmax.
+    // but when i access the grid, I want to go through the indexes from 0 upwards. So i need to transform 
+    // i to i-xmin. I could change it to for(int i=0; i<p.xmax-p.xmin; i++)
     for (int i=p.xmin; i<p.xmax; i++){
         for (int j=p.ymin; j<p.ymax; j++){
             u_old[i - p.xmin][j - p.ymin] = u_new[i - p.xmin][j - p.ymin];
@@ -57,6 +61,7 @@ void jacobi_step(params p, double** u_new, double** u_old, double** f, int my_ra
             int idx = i-p.xmin;
             int idy = j-p.ymin;
             u_new[idx][idy] = 0.25*(u_old[idx-1][idy] + u_old[idx+1][idy] + u_old[idx][idy-1] + u_old[idx][idy+1] - dx*dy*f[idx][idy]);
+            // I need to add from left from right stuff.
         }
     }
     if (p.nx!=p.ny) printf("In function jacobi_step (jacobi.cpp l.26): nx != ny, check jacobi updates\n");

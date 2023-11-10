@@ -20,6 +20,11 @@ int mpi_get_domain(int nx, int ny, int my_rank, int size, int* min_x, int* max_x
 	/*
 	define corners or local domains
 	*/
+	*min_y = 0;
+	*max_y = ny;
+	*min_x = my_rank * nx/size;
+	*max_x = (my_rank == size-1) ? nx : (my_rank+1) * nx/size;
+
     printf("in mpi_get_domain() in mpi_module.cpp,  define corners of the local domains\n");
 
 	printf("I am rank %d and my domain is: xmin, xmax, ymin, ymax: %d %d %d %d\n",my_rank,*min_x,*max_x,*min_y,*max_y);
@@ -34,19 +39,39 @@ int halo_comm(params p, int my_rank, int size, double** u, double* fromLeft, dou
 
 	for (int j=0;j<(p.ymax - p.ymin);j++) {fromLeft[j] = 0; fromRight[j] = 0;} //initialize fromLeft and fromRight
 
-    /* define columns to be sent to right neighbour and to the left neighbour, 
-    also receive one both form left and right neighbour*/
+	/* His code from exercise 8 start. */
+	// double * toLeft, toRight;	// Define a vector where we store the values we want to send to the left and right.
+	// MPI_Isend(&toLeft[0], p.ymax - p.ymin, MPI_DOUBLE, leftRank, tag, request[0]);
+	// MPI_Isend(&u[0][p.xmax - p.xmin], p.ymax - p.ymin, MPI_DOUBLE, rightRankRank, tag, request[1]);
+	// MPI_Irecv(from)
+	// MPI_Waitall(MPI_COMM_WORLD, request, MPI_STATES_IGNORE)
 
-    /* choose either to define MPIcolumn_type (lines 43-45) or define 
-    the columns to be sent manually (lines 53-56)*/
+	/* define columns to be sent to right neighbour and to the left neighbour, 
+	also receive one both form left and right neighbour*/
 
-    // MPI_Datatype column_type;
-    // MPI_Type_vector(p.ymax - p.ymin, 1, p.xmax - p.xmin, MPI_DOUBLE, &column_type);
-    // MPI_Type_commit(&column_type);
+	/* choose either to define MPIcolumn_type (lines 43-45) or define 
+	the columns to be sent manually (lines 53-56)*/
 
-    // ...some code goes here and then do not forget to free the column_type
+	MPI_Datatype column_type;
+	MPI_Type_vector(p.ymax - p.ymin, 1, p.xmax - p.xmin, MPI_DOUBLE, &column_type);
+	MPI_Type_commit(&column_type);
 
-    // MPI_Type_free(&column_type);
+	// ...some code goes here and then do not forget to free the column_type
+	int array_size = (my_rank == 0 || my_rank = size-1) ? 2 : 4;
+	MPI_Request[array_size] requests;
+
+	if (my_rank != 0)	// Interaction with left neighbour
+	{
+		MPI_Isend(u[0], 1, column_type, my_rank - 1, 100, MPI_COMM_WORLD, &requests[0]);
+		MPI_Irecv(u[0], 1, column_type, my_rank - 1, 100, MPI_COMM_WORLD, &requests[1]);
+	}
+	if (my_rank != size - 1)	// Interaction with right neighbour
+	{	// p.xmax is a global variable. If i want the max of my local u I calculate xmax-xmin.
+		MPI_Isend(u[p.xmax-p.xmin-1], 1, column_type, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-2]);
+		MPI_Irecv(u[p.xmax-p.xmin-1], 1, column_type, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-1]);
+	}
+
+	MPI_Type_free(&column_type);
 
 	//or alternative approach below
 
@@ -60,7 +85,8 @@ int halo_comm(params p, int my_rank, int size, double** u, double* fromLeft, dou
 	return 0;
 }
 
-
+// I can use this when callculating the norm_diff
+// Maybe call this at the end of norm_diff()
 int ALLREDUCE(double* loc_diff, double* loc_sumdiff){
 
 	MPI_Allreduce(loc_diff, loc_sumdiff, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
