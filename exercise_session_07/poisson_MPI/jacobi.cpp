@@ -60,8 +60,16 @@ void jacobi_step(params p, double** u_new, double** u_old, double** f, int my_ra
             if (j==0 || j==p.ny-1) continue;
             int idx = i-p.xmin;
             int idy = j-p.ymin;
-            u_new[idx][idy] = 0.25*(u_old[idx-1][idy] + u_old[idx+1][idy] + u_old[idx][idy-1] + u_old[idx][idy+1] - dx*dy*f[idx][idy]);
-            // I need to add from left from right stuff.
+            if (idx == 0)
+            {
+                u_new[idx][idy] = 0.25*(fromLeft[idy] + u_old[idx+1][idy] + u_old[idx][idy-1] + u_old[idx][idy+1] - dx*dy*f[idx][idy]);
+            }else if (idx == p.xmax-p.xmin-1)
+            {
+                u_new[idx][idy] = 0.25*(u_old[idx-1][idy] + fromRight[idy] + u_old[idx][idy-1] + u_old[idx][idy+1] - dx*dy*f[idx][idy]);
+            }else
+            {
+                u_new[idx][idy] = 0.25*(u_old[idx-1][idy] + u_old[idx+1][idy] + u_old[idx][idy-1] + u_old[idx][idy+1] - dx*dy*f[idx][idy]);
+            }           
         }
     }
     if (p.nx!=p.ny) printf("In function jacobi_step (jacobi.cpp l.26): nx != ny, check jacobi updates\n");
