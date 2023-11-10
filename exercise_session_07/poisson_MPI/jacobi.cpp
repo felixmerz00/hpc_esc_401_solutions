@@ -15,8 +15,8 @@ double norm_diff(params p, double** mat1, double** mat2){
 
     printf("Here, in norm_diff() function, change the serial implementation to MPI setup\n");
     double ret=0., diff=0.;
-    for (int i=0; i<p.nx; i++){
-        for (int j=0; j<p.ny; j++){
+    for (int i=p.xmin; i<p.xmax; i++){
+        for (int j=p.ymin; j<p.ymax; j++){
             diff = mat1[i][j] - mat2[i][j];
             ret += diff*diff;
         }
