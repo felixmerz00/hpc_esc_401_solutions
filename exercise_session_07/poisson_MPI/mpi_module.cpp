@@ -71,6 +71,7 @@ int halo_comm(params p, int my_rank, int size, double** u, double* fromLeft, dou
 		MPI_Irecv(u[p.xmax-p.xmin-1], 1, column_type, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-1]);
 	}
 
+	MPI_Waitall(array_size, requests, MPI_STATUS_IGNORE);
 	MPI_Type_free(&column_type);
 
 	//or alternative approach below
