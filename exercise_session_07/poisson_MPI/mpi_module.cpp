@@ -63,12 +63,12 @@ int halo_comm(params p, int my_rank, int size, double** u, double* fromLeft, dou
 	if (my_rank != 0)	// Interaction with left neighbour
 	{
 		MPI_Isend(u[0], 1, column_type, my_rank - 1, 100, MPI_COMM_WORLD, &requests[0]);
-		MPI_Irecv(u[0], 1, column_type, my_rank - 1, 100, MPI_COMM_WORLD, &requests[1]);
+		MPI_Irecv(fromLeft, 1, column_type, my_rank - 1, 100, MPI_COMM_WORLD, &requests[1]);
 	}
 	if (my_rank != size - 1)	// Interaction with right neighbour
 	{	// p.xmax is a global variable. If i want the max of my local u I calculate xmax-xmin.
 		MPI_Isend(u[p.xmax-p.xmin-1], 1, column_type, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-2]);
-		MPI_Irecv(u[p.xmax-p.xmin-1], 1, column_type, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-1]);
+		MPI_Irecv(fromRight, 1, column_type, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-1]);
 	}
 
 	MPI_Waitall(array_size, requests, MPI_STATUS_IGNORE);
