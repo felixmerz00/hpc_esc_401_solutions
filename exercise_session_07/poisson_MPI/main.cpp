@@ -4,8 +4,6 @@
 #include "mpi_module.h"
 
 int main(int argc, char *argv[]){
-    printf("hello world");
-
 
     int size, my_rank;
     // int min_x,max_x,min_y,max_y;
