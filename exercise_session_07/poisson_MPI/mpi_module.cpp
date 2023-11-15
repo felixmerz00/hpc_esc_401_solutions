@@ -25,7 +25,7 @@ int mpi_get_domain(int nx, int ny, int my_rank, int size, int* min_x, int* max_x
 	*min_x = my_rank * nx/size;
 	*max_x = (my_rank == size-1) ? nx : (my_rank+1) * nx/size;
 
-    printf("in mpi_get_domain() in mpi_module.cpp,  define corners of the local domains\n");
+  printf("in mpi_get_domain() in mpi_module.cpp,  define corners of the local domains\n");
 
 	printf("I am rank %d and my domain is: xmin, xmax, ymin, ymax: %d %d %d %d\n",my_rank,*min_x,*max_x,*min_y,*max_y);
 	return 0;
@@ -52,35 +52,53 @@ int halo_comm(params p, int my_rank, int size, double** u, double* fromLeft, dou
 	/* choose either to define MPIcolumn_type (lines 43-45) or define 
 	the columns to be sent manually (lines 53-56)*/
 
-	MPI_Datatype column_type;
-	MPI_Type_vector(p.ymax - p.ymin, 1, p.xmax - p.xmin, MPI_DOUBLE, &column_type);
-	MPI_Type_commit(&column_type);
+	// MPI_Datatype column_type;
+	// MPI_Type_vector(p.ymax - p.ymin, 1, p.xmax - p.xmin, MPI_DOUBLE, &column_type);
+	// MPI_Type_commit(&column_type);
 
-	// ...some code goes here and then do not forget to free the column_type
-	int array_size = (my_rank == 0 || my_rank == size-1) ? 2 : 4;
-	MPI_Request requests[array_size];
+	// // ...some code goes here and then do not forget to free the column_type
+	// int array_size = (my_rank == 0 || my_rank == size-1) ? 2 : 4;
+	// MPI_Request requests[array_size];
 
-	if (my_rank != 0)	// Interaction with left neighbour
-	{
-		MPI_Isend(u[0], 1, column_type, my_rank - 1, 100, MPI_COMM_WORLD, &requests[0]);
-		MPI_Irecv(fromLeft, 1, column_type, my_rank - 1, 100, MPI_COMM_WORLD, &requests[1]);
-	}
-	if (my_rank != size - 1)	// Interaction with right neighbour
-	{	// p.xmax is a global variable. If i want the max of my local u I calculate xmax-xmin.
-		MPI_Isend(u[p.xmax-p.xmin-1], 1, column_type, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-2]);
-		MPI_Irecv(fromRight, 1, column_type, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-1]);
-	}
+	// if (my_rank != 0)	// Interaction with left neighbour
+	// {
+	// 	MPI_Isend(u[0], 1, column_type, my_rank - 1, 100, MPI_COMM_WORLD, &requests[0]);
+	// 	MPI_Irecv(fromLeft, 1, column_type, my_rank - 1, 100, MPI_COMM_WORLD, &requests[1]);
+	// }
+	// if (my_rank != size - 1)	// Interaction with right neighbour
+	// {	// p.xmax is a global variable. If i want the max of my local u I calculate xmax-xmin.
+	// 	MPI_Isend(u[p.xmax-p.xmin-1], 1, column_type, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-2]);
+	// 	MPI_Irecv(fromRight, 1, column_type, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-1]);
+	// }
 
-	MPI_Waitall(array_size, requests, MPI_STATUS_IGNORE);
-	MPI_Type_free(&column_type);
+	// MPI_Waitall(array_size, requests, MPI_STATUS_IGNORE);
+	// MPI_Type_free(&column_type);
 
 	//or alternative approach below
 
-	// double* column_to_right = new double [p.ymax - p.ymin];
-	// for (int j=0;j<(p.ymax - p.ymin);j++) column_to_right[j] = u[p.xmax - p.xmin - 1][j]; 
-	// double* column_to_left = new double [p.ymax - p.ymin];
-	// for (int j=0;j<(p.ymax - p.ymin);j++) column_to_left[j] = u[0][j]; 
+	double* column_to_right = new double [p.ymax - p.ymin];
+	for (int j=0;j<(p.ymax - p.ymin);j++) column_to_right[j] = u[p.xmax - p.xmin - 1][j]; 
+	double* column_to_left = new double [p.ymax - p.ymin];
+	for (int j=0;j<(p.ymax - p.ymin);j++) column_to_left[j] = u[0][j]; 
 
+	int y_size = p.ymax - p.ymin;
+	int array_size = (my_rank == 0 || my_rank == size-1) ? 2 : 4;
+	// MPI_Request requests[array_size];
+	MPI_Request* requests = new MPI_Request[4];
+
+	if (my_rank != 0)	// Interaction with left neighbour
+	{
+		MPI_Isend(column_to_left, y_size, MPI_DOUBLE, my_rank - 1, 100, MPI_COMM_WORLD, &requests[0]);
+		MPI_Irecv(fromLeft, y_size, MPI_DOUBLE, my_rank - 1, 100, MPI_COMM_WORLD, &requests[1]);
+	}
+	if (my_rank != size - 1)	// Interaction with right neighbour
+	{	// p.xmax is a global variable. If i want the max of my local u I calculate xmax-xmin.
+		MPI_Isend(column_to_right, y_size, MPI_DOUBLE, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-2]);
+		MPI_Irecv(fromRight, y_size, MPI_DOUBLE, my_rank + 1, 100, MPI_COMM_WORLD, &requests[array_size-1]);
+	}
+
+	MPI_Waitall(array_size, requests, MPI_STATUS_IGNORE);
+	free(requests);
 
 	printf("mpi_module.cpp, define halo comm:  \n");
 	return 0;

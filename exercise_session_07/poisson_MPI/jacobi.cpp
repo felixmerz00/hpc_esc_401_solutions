@@ -17,12 +17,16 @@ double norm_diff(params p, double** mat1, double** mat2){
     double ret=0., diff=0.;
     for (int i=p.xmin; i<p.xmax; i++){
         for (int j=p.ymin; j<p.ymax; j++){
-            diff = mat1[i][j] - mat2[i][j];
+            diff = mat1[i-p.xmin][j-p.ymin] - mat2[i-p.xmin][j-p.ymin];
             ret += diff*diff;
         }
     }
+    double world_sum = 0.0;
+    ALLREDUCE(&ret, &world_sum);
+    world_sum = sqrt(world_sum/(p.nx*p.ny));
+
     ret = sqrt(ret/(p.nx*p.ny));
-    return ret;
+    return world_sum;
 }
 
 /**
