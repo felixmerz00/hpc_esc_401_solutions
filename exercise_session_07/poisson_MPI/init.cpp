@@ -123,8 +123,8 @@ void init_variables(params p, double **f, double **u_old, double **u_new){
     init_f(p, f);
     for (int i=0; i<(p.xmax - p.xmin); i++){
         for (int j=0; j<(p.ymax - p.ymin); j++){
-            u_old[i][j]  = f[i][j];
-            u_new[i][j]  = f[i][j];
+            u_old[i][j] = f[i][j];
+            u_new[i][j] = f[i][j];
         }
     }
 }
