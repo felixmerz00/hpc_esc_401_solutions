@@ -32,11 +32,4 @@ It worked. The job (slurm-2423586.out) produced the following output.
     I am processor 1 out of 4, and the sum is 6
 
 # Exercise 2
-My program compiles and runs but there are always errors, specifically segmentation faults. I improved a couple things and the output changed slightly, possibly a different kind of segementation fault. But I can't get it running properly. 
-
-```
-srun: error: nid001001: tasks 0-3: Segmentation fault
-srun: launch/slurm: _step_signal: Terminating StepId=2435403.0
-```
-
-I initialized the MPI environment and decomposed the domain in one direction. I did the halo communication with asynchronous sending and receiving. I changed the jacobi_step function so now it considers the values from the neighbouring ranks.
+I initialized the MPI environment and decomposed the domain in one direction. I did the halo communication with asynchronous sending and receiving. I changed the jacobi_step function so now it considers the values from the neighbouring ranks. It seems like everything works alright.
