@@ -53,30 +53,12 @@ I used the solutions provided in the course repository. In the Makefile I change
 
 
 # Exercise 3
-sudo docker build --tag poisson .
-[+] Building 23.6s (11/11) FINISHED                                                           docker:default
- => [internal] load .dockerignore                                                                       0.0s
- => => transferring context: 2B                                                                         0.0s
- => [internal] load build definition from Dockerfile                                                    0.0s
- => => transferring dockerfile: 259B                                                                    0.0s
- => resolve image config for docker.io/docker/dockerfile:1                                              1.2s
- => CACHED docker-image://docker.io/docker/dockerfile:1@sha256:ac85f380a63b13dfcefa89046420e1781752bab  0.0s
- => [internal] load metadata for docker.io/library/ubuntu:trusty                                        0.8s
- => [internal] load build context                                                                       0.2s
- => => transferring context: 2.64kB                                                                     0.0s
- => CACHED [1/4] FROM docker.io/library/ubuntu:trusty@sha256:64483f3496c1373bfd55348e88694d1c4d0c9b660  0.0s
- => [2/4] COPY . /main                                                                                  0.3s
- => [3/4] RUN apt-get update && apt-get install -y g++ && apt-get install -y make                      18.2s
- => [4/4] WORKDIR ./hpc_esc_401/exercise_session_09/poisson_solver_serial/                              0.3s
- => exporting to image                                                                                  1.0s 
- => => exporting layers                                                                                 1.0s 
- => => writing image sha256:618f12a6176c54e3efe412673b0f461487bd5e713374a363aab86555650eda63            0.0s 
- => => naming to docker.io/library/poisson
-
+I ran these commands
+```
 sudo docker build --tag poisson .
 sudo docker images
-
 sudo docker run poisson
+```
 
 I couldn't mount a folder. I tried the command from the lecture slides with "--mount" and an alternative with "-v".
 ```
