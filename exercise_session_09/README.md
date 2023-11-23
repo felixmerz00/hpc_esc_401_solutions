@@ -53,7 +53,7 @@ I used the solutions provided in the course repository. In the Makefile I change
 
 
 # Exercise 3
-I ran these commands
+I ran these commands.
 ```
 sudo docker build --tag poisson .
 sudo docker images
@@ -69,8 +69,7 @@ I also tried this
 sudo docker run poisson -v ./output:/home/ubuntu/hpc_esc_401/exercise_session_09/poisson_solver_serial
 ```
 
-docker tag poisson:latest <Docker ID>/poisson:latest
-Docker ID refers to my Docker Hub username.
+In the given command `docker tag poisson:latest <Docker ID>/poisson:latest` Docker ID refers to my Docker Hub username.
 ```
 sudo docker tag poisson:latest felixmerz/poisson:latest
 sudo docker login
