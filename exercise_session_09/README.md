@@ -66,14 +66,9 @@ sudo docker build --tag poisson .
 sudo docker images
 sudo docker run poisson
 ```
-
-I couldn't mount a folder. I tried the command from the lecture slides with "--mount" and an alternative with "-v".
+With these commands I get no output in my output folder. I ran my poisson image again and mounted my own output folder which is located in the same directory as my Dockerfile.
 ```
-sudo docker run --rm --mount type=bind,source=/home/ubuntu,target=/home/ubuntu/hpc_esc_401/exercise_session_09/poisson_solver_serial poisson
-```
-I also tried this
-```
-sudo docker run poisson -v ./output:/home/ubuntu/hpc_esc_401/exercise_session_09/poisson_solver_serial
+sudo docker run -v ./output:/docker-container-folder/output poisson
 ```
 
 In the given command `docker tag poisson:latest <Docker ID>/poisson:latest` Docker ID refers to my Docker Hub username.
