@@ -77,3 +77,5 @@ sudo docker tag poisson:latest felixmerz/poisson:latest
 sudo docker login
 sudo docker push felixmerz/poisson:latest
 ```
+
+I have been doing everything on my vm already.
