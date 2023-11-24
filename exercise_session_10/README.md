@@ -32,13 +32,12 @@ hadoop fs -ls DonaldTrump
 ./pymapred.sh
 ```
 
-How many map and reduction operations were performed?
+How many map and reduction operations were performed? <br>
 For each word one map operation is done. In total 538568 operations. There are 538568 words. 47090 of them are unique. The program performed 538568-47090=491478 reduce operations.
 
-How many lines/entries were treated?
-
+How many lines/entries were treated? <br>
 In the mapping step 35371 lines were treated. In the reduction step 538568 were treated. <br>
-Map input records=35371, Reduce input records=538568 \\
+Map input records=35371, Reduce input records=538568 <br>
 These two output files were created: output/_SUCCESS and output/part-00000.
 
 I see all the words he uses and their counts.__
@@ -51,6 +50,4 @@ hadoop fs -cat output/part-00000
 “trumpbacked	1
 “trumpchicago	1
 
-I can find the output files under the following path.
-I go to http://localhost:9870/ --> Utilities --> Browse file system --> user --> ubuntu --> output
-http://localhost:9870/explorer.html#/user/ubuntu
+I can find the output files under the following path. http://localhost:9870/ --> Utilities --> Browse file system --> user --> ubuntu --> output or http://localhost:9870/explorer.html#/user/ubuntu
