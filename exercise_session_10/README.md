@@ -1,3 +1,6 @@
+# Exercise 1
+Everything worked alright.
+
 # Exercise 2
 I map each word to a count and sort them alphabetically.
 ```
