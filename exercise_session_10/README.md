@@ -37,7 +37,7 @@ For each word one map operation is done. In total 538568 operations. There are 5
 
 How many lines/entries were treated?
 
-In the mapping step 35371 lines were treated. In the reduction step 538568 were treated. \\
+In the mapping step 35371 lines were treated. In the reduction step 538568 were treated. <br>
 Map input records=35371, Reduce input records=538568 \\
 These two output files were created: output/_SUCCESS and output/part-00000.
 
