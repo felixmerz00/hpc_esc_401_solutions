@@ -17,15 +17,15 @@ __global__ void cal_pi(double *sum, int nbin, double step, int nthreads, int nbl
 }
 
 // Main routine that executes on the host
-int main(void) {
+int main(void, char *argv[]) {
+	int NUM_BLOCK = atoi(argv[1]);		// Number of thread blocks
+	int NUM_THREAD = atoi(argv[2]);		// Number of threads per block
+
 	dim3 dimGrid(NUM_BLOCK,1,1);  // Grid dimensions
 	dim3 dimBlock(NUM_THREAD,1,1);  // Block dimensions
 	double *sumHost, *sumDev;  // Pointer to host & device arrays
 	double pi = 0;
 	int tid;
-
-	int NUM_BLOCK = atoi(argv[1]);		// Number of thread blocks
-	int NUM_THREAD = atoi(argv[2]);		// Number of threads per block
 
 	double step = 1.0/NBIN;  // Step size
 	size_t size = NUM_BLOCK*NUM_THREAD*sizeof(double);  //Array memory size
