@@ -17,7 +17,7 @@ __global__ void cal_pi(double *sum, int nbin, double step, int nthreads, int nbl
 }
 
 // Main routine that executes on the host
-int main(void, char *argv[]) {
+int main(int argc, char *argv[]) {
 	int NUM_BLOCK = atoi(argv[1]);		// Number of thread blocks
 	int NUM_THREAD = atoi(argv[2]);		// Number of threads per block
 
