@@ -12,8 +12,5 @@ for NUM_BLOCK in "${NUM_BLOCK_VALUES[@]}"; do
 
     # Run the compiled program
     ./cpi_cuda -DNUM_BLOCK=$NUM_BLOCK -DNUM_THREAD=$NUM_THREAD
-
-    # Clean up the compiled program
-    rm your_program
   done
 done
