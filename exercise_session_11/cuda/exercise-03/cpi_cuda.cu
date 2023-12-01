@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 	FILE *fp = fopen("runtimes.txt", "a");
 	if (fp == NULL)
 	{
-		printf("Error opening the file %s", filename);
+		printf("Error opening the file %s", "runtimes.txt");
 		return -1;
   }
 	fprintf("%d,%d,%.16g,%.4g", NUM_BLOCK, NUM_THREAD, pi, delta);
