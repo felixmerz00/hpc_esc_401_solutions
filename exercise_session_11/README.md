@@ -43,3 +43,94 @@ PI = 3.141592656731382 computed in 0.07722 seconds
 PI = 3.141592656731382 computed in 0.07738 seconds
 PI = 3.141592656731382 computed in 0.07746 seconds
 ```
+
+In the cuda code the time measurement is done outside the loop. In the openacc code the time measurement is done outside the loop.
+
+# Exercise 3
+```
+nvcc --gpu-architecture=sm_60 -o cpi_cuda-approach-2 cpi_cuda-approach-2.cu gettime.c
+sbatch script
+```
+I get the following measurements.
+```
+Num blocks: 60, num threads: 16, computation time: 0.1599 seconds
+Num blocks: 60, num threads: 32, computation time: 0.07737 seconds
+Num blocks: 60, num threads: 48, computation time: 0.04941 seconds
+Num blocks: 60, num threads: 64, computation time: 0.03707 seconds
+Num blocks: 60, num threads: 80, computation time: 0.03007 seconds
+Num blocks: 60, num threads: 96, computation time: 0.02507 seconds
+Num blocks: 60, num threads: 112, computation time: 0.022 seconds
+Num blocks: 60, num threads: 128, computation time: 0.01923 seconds
+Num blocks: 60, num threads: 144, computation time: 0.01777 seconds
+Num blocks: 60, num threads: 160, computation time: 0.01601 seconds
+Num blocks: 120, num threads: 16, computation time: 0.07326 seconds
+Num blocks: 120, num threads: 32, computation time: 0.03665 seconds
+Num blocks: 120, num threads: 48, computation time: 0.02492 seconds
+Num blocks: 120, num threads: 64, computation time: 0.01871 seconds
+Num blocks: 120, num threads: 80, computation time: 0.01598 seconds
+Num blocks: 120, num threads: 96, computation time: 0.01334 seconds
+Num blocks: 120, num threads: 112, computation time: 0.01192 seconds
+Num blocks: 120, num threads: 128, computation time: 0.01045 seconds
+Num blocks: 120, num threads: 144, computation time: 0.01316 seconds
+Num blocks: 120, num threads: 160, computation time: 0.01187 seconds
+Num blocks: 180, num threads: 16, computation time: 0.04886 seconds
+Num blocks: 180, num threads: 32, computation time: 0.02446 seconds
+Num blocks: 180, num threads: 48, computation time: 0.01705 seconds
+Num blocks: 180, num threads: 64, computation time: 0.01282 seconds
+Num blocks: 180, num threads: 80, computation time: 0.01112 seconds
+Num blocks: 180, num threads: 96, computation time: 0.009288 seconds
+Num blocks: 180, num threads: 112, computation time: 0.01132 seconds
+Num blocks: 180, num threads: 128, computation time: 0.009944 seconds
+Num blocks: 180, num threads: 144, computation time: 0.01131 seconds
+Num blocks: 180, num threads: 160, computation time: 0.0102 seconds
+Num blocks: 240, num threads: 16, computation time: 0.03723 seconds
+Num blocks: 240, num threads: 32, computation time: 0.01866 seconds
+Num blocks: 240, num threads: 48, computation time: 0.01326 seconds
+Num blocks: 240, num threads: 64, computation time: 0.009983 seconds
+Num blocks: 240, num threads: 80, computation time: 0.01184 seconds
+Num blocks: 240, num threads: 96, computation time: 0.009901 seconds
+Num blocks: 240, num threads: 112, computation time: 0.01083 seconds
+Num blocks: 240, num threads: 128, computation time: 0.009516 seconds
+Num blocks: 240, num threads: 144, computation time: 0.01099 seconds
+Num blocks: 240, num threads: 160, computation time: 0.009921 seconds
+Num blocks: 300, num threads: 16, computation time: 0.02994 seconds
+Num blocks: 300, num threads: 32, computation time: 0.01501 seconds
+Num blocks: 300, num threads: 48, computation time: 0.01107 seconds
+Num blocks: 300, num threads: 64, computation time: 0.008338 seconds
+Num blocks: 300, num threads: 80, computation time: 0.01079 seconds
+Num blocks: 300, num threads: 96, computation time: 0.009043 seconds
+Num blocks: 300, num threads: 112, computation time: 0.01042 seconds
+Num blocks: 300, num threads: 128, computation time: 0.009154 seconds
+Num blocks: 300, num threads: 144, computation time: 0.01019 seconds
+Num blocks: 300, num threads: 160, computation time: 0.009211 seconds
+Num blocks: 360, num threads: 16, computation time: 0.02548 seconds
+Num blocks: 360, num threads: 32, computation time: 0.01279 seconds
+Num blocks: 360, num threads: 48, computation time: 0.0116 seconds
+Num blocks: 360, num threads: 64, computation time: 0.008748 seconds
+Num blocks: 360, num threads: 80, computation time: 0.01102 seconds
+Num blocks: 360, num threads: 96, computation time: 0.009238 seconds
+Num blocks: 360, num threads: 112, computation time: 0.01015 seconds
+Num blocks: 360, num threads: 128, computation time: 0.008945 seconds
+Num blocks: 360, num threads: 144, computation time: 0.01018 seconds
+Num blocks: 360, num threads: 160, computation time: 0.009228 seconds
+Num blocks: 420, num threads: 16, computation time: 0.02195 seconds
+Num blocks: 420, num threads: 32, computation time: 0.01103 seconds
+Num blocks: 420, num threads: 48, computation time: 0.01132 seconds
+Num blocks: 420, num threads: 64, computation time: 0.008551 seconds
+Num blocks: 420, num threads: 80, computation time: 0.01039 seconds
+Num blocks: 420, num threads: 96, computation time: 0.008705 seconds
+Num blocks: 420, num threads: 112, computation time: 0.009961 seconds
+Num blocks: 420, num threads: 128, computation time: 0.008776 seconds
+Num blocks: 420, num threads: 144, computation time: 0.009761 seconds
+Num blocks: 420, num threads: 160, computation time: 0.008845 seconds
+Num blocks: 600, num threads: 16, computation time: 0.01659 seconds
+Num blocks: 600, num threads: 32, computation time: 0.008383 seconds
+Num blocks: 600, num threads: 48, computation time: 0.01103 seconds
+Num blocks: 600, num threads: 64, computation time: 0.008353 seconds
+Num blocks: 600, num threads: 80, computation time: 0.01035 seconds
+Num blocks: 600, num threads: 96, computation time: 0.0087 seconds
+Num blocks: 600, num threads: 112, computation time: 0.009665 seconds
+Num blocks: 600, num threads: 128, computation time: 0.008563 seconds
+Num blocks: 600, num threads: 144, computation time: 0.009669 seconds
+Num blocks: 600, num threads: 160, computation time: 0.008782 seconds
+```
