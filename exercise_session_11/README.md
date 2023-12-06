@@ -134,3 +134,6 @@ Num blocks: 600, num threads: 128, computation time: 0.008563 seconds
 Num blocks: 600, num threads: 144, computation time: 0.009669 seconds
 Num blocks: 600, num threads: 160, computation time: 0.008782 seconds
 ```
+
+## Bonus
+According to my plot the more blocks and threads, the faster the program executes.
