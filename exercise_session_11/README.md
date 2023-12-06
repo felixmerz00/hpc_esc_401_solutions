@@ -47,6 +47,7 @@ PI = 3.141592656731382 computed in 0.07746 seconds
 In the cuda code the time measurement is done outside the loop. In the openacc code the time measurement is done outside the loop.
 
 # Exercise 3
+I first tried it with a bash script, but that did not work. Today I tried again by hard coding two arrays with the number of blocks and threads into the cpi_cuda-approach-2.cu code. This approach worked for me.
 ```
 nvcc --gpu-architecture=sm_60 -o cpi_cuda-approach-2 cpi_cuda-approach-2.cu gettime.c
 sbatch script
