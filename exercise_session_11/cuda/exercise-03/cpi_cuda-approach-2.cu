@@ -20,8 +20,8 @@ __global__ void cal_pi(double *sum, int nbin, double step, int nthreads, int nbl
 
 // Main routine that executes on the host
 int main(void) {
-	#define NUM_BLOCK_VALUES	{60, 120, 180, 240, 300, 360, 420, 600}
-	#define NUM_THREAD_VALUES {16, 32, 48, 64, 80, 96, 112, 128, 144, 160}
+	int NUM_BLOCK_VALUES[] =	{60, 120, 180, 240, 300, 360, 420, 600};
+	int NUM_THREAD_VALUES[] = {16, 32, 48, 64, 80, 96, 112, 128, 144, 160};
 
 	for(int b = 0; b < 8; b++){
 		for(int t = 0; t < 10; t++){
