@@ -50,7 +50,7 @@ int main(void) {
 
 			// Print results
 			double delta = getTime() - start;
-			printf("PI = %.16g computed in %.4g seconds\n", pi, delta);
+			printf("Num blocks: %d, num threads: %d, computation time: %.4g seconds\n", NUM_BLOCK_VALUES[b], NUM_THREAD_VALUES[t], delta);
 
 			// Cleanup
 			free(sumHost);
