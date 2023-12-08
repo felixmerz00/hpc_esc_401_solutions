@@ -1,0 +1,33 @@
+dot product OpenACC of length n = 4 : 3.05176e-05MB
+expected 42 got 42: success
+Host kernel took 0 s
+GPU kernel took 0.0185032 s
+dot product OpenACC of length n = 16 : 0.00012207MB
+expected 148 got 148: success
+Host kernel took 0 s
+GPU kernel took 0.0182149 s
+dot product OpenACC of length n = 256 : 0.00195312MB
+expected 2408 got 2408: success
+Host kernel took 0 s
+GPU kernel took 0.0182309 s
+dot product OpenACC of length n = 65536 : 0.5MB
+expected 588374 got 588374: success
+Host kernel took 6.50883e-05 s
+GPU kernel took 0.018348 s
+
+
+Batch Job Summary Report (version 21.01.1) for Job "script" (50386991) on daint
+
+Job information (1/2)
+-----------------------------------------------------------------------------------------------------
+             Submit            Eligible               Start                 End    Elapsed Time limit
+------------------- ------------------- ------------------- ------------------- ---------- ----------
+2023-12-08T17:28:16 2023-12-08T17:28:16 2023-12-08T17:29:00 2023-12-08T17:29:31   00:00:31   00:02:00
+-----------------------------------------------------------------------------------------------------
+
+Job information (2/2)
+-------------------------------------------------------------
+    Username      Account    Partition   NNodes        Energy
+------------ ------------ ------------ -------- -------------
+       fmerz         uzg2       normal        1      1.695 kJ
+
