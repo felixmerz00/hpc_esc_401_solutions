@@ -12,4 +12,8 @@
 
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
-srun ./blur.openacc
+for N in 10 20 40; do
+    for nstep in 50 100 200; do
+        srun ./blur.openacc $N $nstep
+    done
+done
