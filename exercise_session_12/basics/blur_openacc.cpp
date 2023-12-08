@@ -8,7 +8,7 @@
 
 #ifdef _OPENACC
     // TODO: declare routine accordingly so as to be called from the GPU
-    #pragma acc routine seq
+    // #pragma acc routine seq
 #endif
 double blur(int pos, const double *u)
 {
