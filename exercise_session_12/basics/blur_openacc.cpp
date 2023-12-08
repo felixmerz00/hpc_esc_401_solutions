@@ -148,6 +148,7 @@ int main(int argc, char** argv) {
     }
 
     std::cout << "==== " << (validate ? "success" : "failure") << " ====\n";
+    std::cout << "N: " << pow << ", nstep: " << nsteps << "\n";
     std::cout << "Host version took " << time_host << " s"
               << " (" << time_host/nsteps << " s/step)\n";
     std::cout << "GPU version took "  << time << " s"
