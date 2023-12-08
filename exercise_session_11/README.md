@@ -139,3 +139,4 @@ Num blocks: 600, num threads: 160, computation time: 0.008782 seconds
 
 ## Bonus
 According to my plot the more blocks and threads, the faster the program executes.
+![Visualization of the output from exercise 3.](./cuda/exercise-03/out-fig.png)
