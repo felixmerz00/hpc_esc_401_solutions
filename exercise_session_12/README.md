@@ -36,7 +36,7 @@ srun -p debug -n 1 -C gpu -t 0.01.00 -A uzg2 axpy.openacc 1
 
 # Exercise 2
 ## a
-I added these lines below the TODO tatks.
+I added these lines below the TODO tasks.
 ```
 #pragma acc routine seq
 #pragma acc parallel loop pcopyin(in[0:n]) pcopyout(buffer[1:n-2])
