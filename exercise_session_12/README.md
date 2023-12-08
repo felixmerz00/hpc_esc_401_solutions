@@ -59,4 +59,19 @@ Further down I changed the code so it would call the nocopies function.
 ```c
 blur_twice_gpu_nocopies(x0, x1, n, nsteps);
 ```
-I got it running (see slurm-50385896.out).
+I got it running (see slurm-50385896.out). So now I test it for different values for N and nstep. For N I test the values 10, 20, 40. For nstep I use the values 50, 100, 200. According to my output, increasing N makes a big difference. Increasig nstep makes a difference too, but not as much. Example output for N = 40. I have other outputs in the file slurm-50386487.out.
+```
+N: 40, nstep: 50
+Host version took 3.91006e-05 s (7.82013e-07 s/step)
+GPU version took 0.00119495 s (2.38991e-05 s/step)
+dispersion 1D test of length n = 260 : 0.00198364MB
+==== success ====
+N: 40, nstep: 100
+Host version took 6.19888e-05 s (6.19888e-07 s/step)
+GPU version took 0.00214219 s (2.14219e-05 s/step)
+dispersion 1D test of length n = 260 : 0.00198364MB
+==== success ====
+N: 40, nstep: 200
+Host version took 0.000113964 s (5.6982e-07 s/step)
+GPU version took 0.00404501 s (2.0225e-05 s/step)
+```
