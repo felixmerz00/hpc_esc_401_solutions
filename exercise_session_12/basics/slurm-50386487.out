@@ -1,0 +1,62 @@
+dispersion 1D test of length n = 1028 : 0.00784302MB
+==== success ====
+N: 10, nstep: 50
+Host version took 0.000105143 s (2.10285e-06 s/step)
+GPU version took 0.00120497 s (2.40993e-05 s/step)
+dispersion 1D test of length n = 1028 : 0.00784302MB
+==== success ====
+N: 10, nstep: 100
+Host version took 0.000191927 s (1.91927e-06 s/step)
+GPU version took 0.00216007 s (2.16007e-05 s/step)
+dispersion 1D test of length n = 1028 : 0.00784302MB
+==== success ====
+N: 10, nstep: 200
+Host version took 0.000364065 s (1.82033e-06 s/step)
+GPU version took 0.00397897 s (1.98948e-05 s/step)
+dispersion 1D test of length n = 1048580 : 8.00003MB
+==== success ====
+N: 20, nstep: 50
+Host version took 0.10525 s (0.002105 s/step)
+GPU version took 0.0087111 s (0.000174222 s/step)
+dispersion 1D test of length n = 1048580 : 8.00003MB
+==== success ====
+N: 20, nstep: 100
+Host version took 0.209204 s (0.00209204 s/step)
+GPU version took 0.0143349 s (0.000143349 s/step)
+dispersion 1D test of length n = 1048580 : 8.00003MB
+==== success ====
+N: 20, nstep: 200
+Host version took 0.418102 s (0.00209051 s/step)
+GPU version took 0.0254779 s (0.000127389 s/step)
+dispersion 1D test of length n = 260 : 0.00198364MB
+==== success ====
+N: 40, nstep: 50
+Host version took 3.91006e-05 s (7.82013e-07 s/step)
+GPU version took 0.00119495 s (2.38991e-05 s/step)
+dispersion 1D test of length n = 260 : 0.00198364MB
+==== success ====
+N: 40, nstep: 100
+Host version took 6.19888e-05 s (6.19888e-07 s/step)
+GPU version took 0.00214219 s (2.14219e-05 s/step)
+dispersion 1D test of length n = 260 : 0.00198364MB
+==== success ====
+N: 40, nstep: 200
+Host version took 0.000113964 s (5.6982e-07 s/step)
+GPU version took 0.00404501 s (2.0225e-05 s/step)
+
+
+Batch Job Summary Report (version 21.01.1) for Job "script" (50386487) on daint
+
+Job information (1/2)
+-----------------------------------------------------------------------------------------------------
+             Submit            Eligible               Start                 End    Elapsed Time limit
+------------------- ------------------- ------------------- ------------------- ---------- ----------
+2023-12-08T17:05:16 2023-12-08T17:05:16 2023-12-08T17:05:16 2023-12-08T17:05:34   00:00:18   00:02:00
+-----------------------------------------------------------------------------------------------------
+
+Job information (2/2)
+-------------------------------------------------------------
+    Username      Account    Partition   NNodes        Energy
+------------ ------------ ------------ -------- -------------
+       fmerz         uzg2       normal        1      1.312 kJ
+
