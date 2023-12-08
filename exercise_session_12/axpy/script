@@ -13,3 +13,7 @@
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 srun ./axpy.openacc 1
+srun ./axpy.openacc 2
+srun ./axpy.openacc 4
+srun ./axpy.openacc 8
+srun ./axpy.openacc 16
