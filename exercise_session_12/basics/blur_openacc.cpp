@@ -8,7 +8,7 @@
 
 #ifdef _OPENACC
     // TODO: declare routine accordingly so as to be called from the GPU
-    // #pragma acc routine seq
+    #pragma acc routine seq
 #endif
 double blur(int pos, const double *u)
 {
@@ -52,7 +52,7 @@ void blur_twice_gpu_naive(double *in , double *out , int n, int nsteps)
 
     for (auto istep = 0; istep < nsteps; ++istep) {
         // TODO: offload this loop to the GPU
-        #pragma acc parallel loop pcopyin(in[0:n]) pcopyout(buffer[1:n-1])
+        #pragma acc parallel loop pcopyin(in[0:n]) pcopyout(buffer[1:n-2])
         {
             for (auto i = 1; i < n-1; ++i) {
                 buffer[i] = blur(i, in);
@@ -60,7 +60,7 @@ void blur_twice_gpu_naive(double *in , double *out , int n, int nsteps)
         }
 
         // TODO: offload this loop to the GPU
-        #pragma acc parallel loop pcopyin(buffer[0:n]) pcopyout(out[2:n-2])
+        #pragma acc parallel loop pcopyin(buffer[0:n]) pcopyout(out[2:n-4])
         {
             for (auto i = 2; i < n-2; ++i) {
                 out[i] = blur(i, buffer);
