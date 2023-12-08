@@ -75,3 +75,18 @@ N: 40, nstep: 200
 Host version took 0.000113964 s (5.6982e-07 s/step)
 GPU version took 0.00404501 s (2.0225e-05 s/step)
 ```
+
+# Exercise 3
+The code is prone to race conditions because when I parallelize it multiple threads try to increase the sum at the same time. To avoid this I used the keyword "reduction". I added these lines below the TODO. They ensure that operations on the sum variable are safe.
+```c
+#pragma acc parallel
+#pragma acc loop reduction(+:sum)
+```
+I run the script with the inputs 2, 4, 8, and 16.
+For my inputs the GPU performs worse than the CPU. Here an example. The other outputs are in the file slurm-50386991.out.
+```
+dot product OpenACC of length n = 65536 : 0.5MB
+expected 588374 got 588374: success
+Host kernel took 6.50883e-05 s
+GPU kernel took 0.018348 s
+```
