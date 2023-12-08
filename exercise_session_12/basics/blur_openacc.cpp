@@ -52,7 +52,7 @@ void blur_twice_gpu_naive(double *in , double *out , int n, int nsteps)
 
     for (auto istep = 0; istep < nsteps; ++istep) {
         // TODO: offload this loop to the GPU
-        #pragma acc parallel loop pcopyout(buffer[0:n])
+        #pragma acc parallel loop pcopyin(in[0:n]) pcopyout(buffer[0:n])
         {
             for (auto i = 1; i < n-1; ++i) {
                 buffer[i] = blur(i, in);
