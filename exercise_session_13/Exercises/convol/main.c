@@ -31,7 +31,7 @@ void init (float *m, int n) {
 void compare (float *a, float *b, int n) {
   int i, errors=0;
   for (i = 0; i < n*n; i++) {
-    if (fabsf(a[i]-b[i]) > 1e-7) { //Play with this value to get an idea of the accuracy of your platform
+    if (fabsf(a[i]-b[i]) > 1e-6) { //Play with this value to get an idea of the accuracy of your platform
       errors++;
     }
   }
