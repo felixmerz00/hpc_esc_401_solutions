@@ -31,11 +31,12 @@ srun ./a.out
 I got the output that I passed.
 
 ## Bonus
-I filled in the code. Then I ran these commands. It failed. I'll might try again later.
+I filled in the code. Then I ran these commands. 
 ```
 nvcc addongpu-bonus.cu 
 srun ./a.out
 ```
+The program failed. I might try again later.
 
 # Exercise 4
 I filled in the missing code. Then I ran these commands.
@@ -44,7 +45,7 @@ make
 salloc -A uzg2 --constraint=gpu --time=00:30:00 --partition=debug
 srun ./a.out 
 ```
-I ran it but it failed. I get the following output. I might try again later. 
+I ran the program but it failed. I get the following output. I might try again later. 
 ```
 Convolution took  0.000096 sec. on GPU
 Convolution took  0.008832 sec. on CPU
