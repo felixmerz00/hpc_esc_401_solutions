@@ -52,25 +52,31 @@ int main () {
   /* Matrix allocation on device */
   float *mat_out_gpu, *mat_in1_gpu, *mat_in2_gpu;
   /* TO DO : do the allocation below, using cudaMalloc()*/
-  
+  cudaMalloc((void **)&mat_out_gpu, nx * ny * sizeof(float));
+  cudaMalloc((void **)&mat_in1_gpu, nx * ny * sizeof(float));
+  cudaMalloc((void **)&mat_in2_gpu, nx * ny * sizeof(float));
 
   /* Matrix initialization */
   Init(mat_in1, nx, ny);
   Init(mat_in2, nx, ny);  
   
   /* TO DO : write below the instructions to copy it to the device */
+  cudaMemcpy(mat_in1_gpu, mat_in1, nx * ny * sizeof(float), cudaMemcpyHostToDevice);
+  cudaMemcpy(mat_in2_gpu, mat_in2, nx * ny * sizeof(float), cudaMemcpyHostToDevice);
 
   
   /* TO DO : complete the number of blocks below */
-  int numBlocks = ...;
+  int numBlocks = (nx*ny + BLOCKSIZE-1)/BLOCKSIZE;
  
   /* TO DO : kernel invocation */
+  kernadd<<<numBlocks, BLOCKSIZE>>> (mat_out_gpu, mat_in1_gpu, mat_in2_gpu, nx, ny);
   
   
   cudaDeviceSynchronize();
   
   /* We now transfer back the matrix from the device to the host */
   /* TO DO : write cudaMemcpy() instruction below */
+  cudaMemcpy(mat_out, mat_out_gpu, nx * ny * sizeof(float), cudaMemcpyDeviceToHost);
   
     
   /* free memory */
